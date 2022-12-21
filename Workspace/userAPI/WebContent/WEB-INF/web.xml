@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee"  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+ <context-param>
+    <param-name>datasource</param-name>
+    <param-value>ds-datasource</param-value>
+  </context-param>
+  <context-param>
+    <param-name>DBType</param-name>
+    <param-value>db_pgsql</param-value>
+  </context-param>
+  <context-param>
+    <param-name>configFile</param-name>
+    <param-value>\webapps\container\config\startupConfig.xml</param-value>
+  </context-param>
+  <context-param>
+    <param-name>operatingSystem</param-name>
+    <param-value>windows</param-value>
+  </context-param>
+  <context-param>
+    <param-name>License</param-name>
+    <param-value>false</param-value>
+  </context-param>
+  <filter>
+    <filter-name>CORSFilter</filter-name>
+    <filter-class>com.ipd.api.CORSFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>CORSFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <servlet>
+    <servlet-name>Jersey REST Service</servlet-name>
+    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+    <init-param>
+      <param-name>jersey.config.server.provider.packages</param-name>
+      <param-value>com.ipd.api</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Jersey REST Service</servlet-name>
+    <url-pattern>/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ConfigServlet</servlet-name>
+    <servlet-class>servlets.ConfigServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ConfigServlet</servlet-name>
+    <url-pattern>/servlet/ConfigServlet</url-pattern>
+  </servlet-mapping> 
+</web-app>
